@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 abstract class OrderItem
@@ -14,14 +14,20 @@ abstract class OrderItem
 
     public abstract void Prepare();
 }
-
+enum PizzaSize
+{
+    Small,
+    Medium,
+    Large
+}
 class Pizza : OrderItem
 {
-    public string Size { get; }
+    public PizzaSize Size { get; }
 
-    public Pizza(string name, double price, string size) : base(name, price)
+    public Pizza(string name, double price, PizzaSize size) : base(name, price)
     {
         Size = size;
+
     }
 
     public override void Prepare()
@@ -87,7 +93,7 @@ class Program
     {
         Order order = new Order();
 
-        order.AddItem(new Pizza("Pepperoni", 10.99, "Large"));
+        order.AddItem(new Pizza("Pepperoni", 10.99, PizzaSize.Large));
         order.AddItem(new Drink("Cola", 2.99, true));
         order.AddItem(new Dessert("Cheesecake", 5.49));
 
